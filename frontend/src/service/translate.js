@@ -1,8 +1,8 @@
-const DEEPL_API_URL = 'https://api-free.deepl.com/v2/translate';
+const url = 'https://api-free.deepl.com/v2/translate';
 
 export const translateText = async (text, targetLanguage) => {
   try {
-    const response = await fetch(DEEPL_API_URL, {
+    const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',

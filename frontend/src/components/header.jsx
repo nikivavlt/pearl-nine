@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 
-const Header = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState('English');
-  const [isDropdownOpen, setDropdownOpen] = useState(false); // State to manage dropdown visibility
+const Header = ({ setSearchQuery, selectedLanguage, setSelectedLanguage }) => {
+  const [inputQuery, setInputQuery] = useState('');
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setSearchQuery(inputQuery)
+  }
 
   const handleLanguageChange = (language) => {
     setSelectedLanguage(language);
@@ -19,13 +24,14 @@ const Header = () => {
         Sport<span>Pulse</span>
         {/* Search Bar */}
         <div className="search-bar-container">
-          <form action="results.html" method="get" id="search-form" style={{ display: 'flex', alignItems: 'center' }}>
+          <form id="search-form" style={{ display: 'flex', alignItems: 'center' }} onSubmit={handleSubmit} >
             <input 
               type="text" 
               name="query" 
               id="search-input" 
               className="search-bar" 
-              placeholder="Search sports/teams/players" 
+              placeholder="Search sports/teams/players.." 
+              onInput={(event) => setInputQuery(event.target.value)}
               required 
             />
             <button type="submit" id="search-button" className="search-icon-button">
